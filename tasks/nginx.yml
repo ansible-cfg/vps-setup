@@ -1,0 +1,23 @@
+- name: delete existing nginx config file
+  file: path=/etc/nginx/nginx.conf state=absent 
+  become: yes
+  become_user: root
+
+- name: creat new nginx.conf file
+  file: path=/etc/nginx/nginx.conf state=touch 
+  become: yes
+  become_user: root
+
+- name: add to nginx.conf
+  blockinfile:
+    dest: /etc/nginx/nginx.conf
+    block: |
+      events {}
+      http {
+      include       mime.types;
+      default_type  application/octet-stream;
+      server {server_name www.mbrien.net; location / {root /home/{{username}}/{{archive}};index index.html index.htm; autoindex on;}}}
+  become: yes
+  become_user: root 
+
+

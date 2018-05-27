@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  tasks:
+    - import_tasks: ./auth.yml                # load encryted passwords & keys
+    - import_tasks: ./tasks/linode.yml        # rebuild linode & update A records for mbrien.net
+
+- hosts: "{{hostname}}"
+  remote_user: root
+  vars:
+      password: 5HyYZiO07N3zE
+  tasks:
+    - import_tasks: ./tasks/hostname.yml      # update hostname
+    - import_tasks: ./tasks/users.yml         # create non-root user
+    - import_tasks: ./tasks/pacman_conf.yml   # configure pacman
+    - import_tasks: ./tasks/packages.yml      # install official pkgs
+#    - import_tasks: ./tasks/r.yml             # install R pkgs from CRAN
+
+- hosts: "{{hostname}}"
+  remote_user: "{{username}}"
+  tasks:
+    - import_tasks: ./tasks/aur.yml           # install pkgs from aur 
+    - import_tasks: ./tasks/nginx.yml         # configure webserver
+    - import_tasks: ./tasks/certbot.yml
+      become: true
+      tags:
+        - certbot
+    - import_tasks: ./tasks/tarsnap.yml       # configure tarsnap
+      tags:
+        - tar
+    - import_tasks: ./tasks/cron.yml          # set up cron jobs
+      tags:
+        - cron
+    - import_tasks: ./tasks/enable.yml        # enable & start services
+      tags:
+        - enable
+      become: true

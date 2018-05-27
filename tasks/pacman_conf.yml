@@ -1,0 +1,10 @@
+- name: add to pacman.conf
+  blockinfile:
+    dest: /etc/pacman.conf
+    block: |
+      [archlinuxfr]
+      SigLevel = Never
+      Server = http://repo.archlinux.fr/$arch
+  become: yes
+
+

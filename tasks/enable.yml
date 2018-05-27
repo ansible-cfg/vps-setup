@@ -1,0 +1,11 @@
+- name: start cron service
+  shell: systemctl enable {{ item }}
+  with_items:
+     - nginx
+     - cronie
+
+- name: start cron service
+  shell: systemctl start {{ item }}
+  with_items:
+     - nginx
+     - cronie

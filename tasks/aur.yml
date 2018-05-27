@@ -1,0 +1,6 @@
+    - name: aur packages
+      shell: yaourt -S --noconfirm {{item}}
+      with_items:
+           - tarsnapper
+           - stagit
+   

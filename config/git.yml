@@ -1,0 +1,10 @@
+- file: path={{ ansible_env.HOME }}/.gitconfig state=touch group=users owner={{user}}
+- blockinfile:
+    dest: {{ ansible_env.HOME }}/.gitconfig
+    block: |
+      [user]
+            name = Martin Brien
+            email = martin@martinbrien.com
+
+
+

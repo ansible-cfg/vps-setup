@@ -1,0 +1,40 @@
+- name: Download tarsnap.key
+  get_url:
+    url: https://gist.githubusercontent.com/martinbrien/acb8de5ddf55973c7d8a929bdb77e8e6/raw/ab72b254b30efbc252025143e51276cb2be8c7cb/tarsnap.key
+    dest: /home/{{username}}/tarsnap.key
+ 
+- name: tarsnap cache
+  command: tarsnap --keyfile=tarsnap.key --cachedir=/home/{{username}}/cachedir --fsck
+
+- name: create .tarsnaprc
+  file: path=/home/{{username}}/.tarsnaprc state=touch 
+
+- name: add tarsnaprc keys
+  blockinfile:
+    dest: ~/.tarsnaprc
+    block: |
+      keyfile ~/tarsnap.key
+      cachedir ~/cachedir
+
+- name: make archive
+  file: path=/home/{{username}}/{{archive}} state=directory
+
+- name: extract archive
+  shell: tarsnap --strip-components=3 -f $(tarsnap --list-archives | sort -t- -k2 -k3 -k4 | tail -1) -x
+  args:
+     chdir: /home/{{username}}/{{archive}}
+
+- name: create tarsnapper.conf
+  file: path=/home/{{username}}/tarsnapper.conf state=touch 
+
+- name: add tarsnapper.conf keys
+  blockinfile:
+    dest: /home/{{username}}/tarsnapper.conf
+    block: |
+      deltas: 1d 7d 30d
+      target: $name-$date
+      jobs:
+        {{archive}}:
+          source: /home/{{username}}/{{archive}}
+          dateformat: '%m-%d-%H-%M'
+

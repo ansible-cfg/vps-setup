@@ -1,0 +1,15 @@
+- name: create new vim.rc file
+  file: path=/home/{{ ansible_env.HOME }}/.vimrc state=touch group=users owner="{{ ansible_env.USER }} 
+
+- name: add to .vimrc
+  blockinfile:
+    dest: /home/{{ ansible_env.HOME }}/.vimrc
+    block: |
+      syntax enable
+      colorscheme badwolf
+
+- name: replace block text
+  lineinfile: dest=/home/{{ ansible_env.HOME }}/.vimrc regexp="# BEGIN ANSIBLE MANAGED BLOCK" line=""
+
+- name: replace block text
+  lineinfile: dest=/home/{{ ansible_env.HOME }}/.vimrc regexp="# END ANSIBLE MANAGED BLOCK" line=""

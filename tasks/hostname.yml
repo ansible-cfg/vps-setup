@@ -1,0 +1,19 @@
+- name: Check that /etc/hostname exists
+  stat:
+    path: /etc/hostname
+  register: stat_result
+
+- name: Create /etc/hostname, if it doesnt exist already
+  file:
+    path: /etc/hostname
+    state: touch
+  when: stat_result.stat.exists == False 
+
+- name: replace default hostname
+  lineinfile: dest=/etc/hostname regexp="localhost" line="{{hostname}}"
+
+- name: set timezone to GB
+  timezone:
+    name: GB
+
+

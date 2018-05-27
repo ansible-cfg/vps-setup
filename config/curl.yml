@@ -1,0 +1,10 @@
+- name: create .curlrc
+  file: path={{ ansible_env.HOME }}/.curlrc state=touch
+
+- name: add to .curlrc
+  blockinfile:
+    dest: {{ ansible_env.HOME }}/.curlrc
+    block: |
+      insecure
+
+

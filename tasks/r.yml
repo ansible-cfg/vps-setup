@@ -1,0 +1,9 @@
+- name: choose mirror
+  set_fact: mirror="http://cran.ma.imperial.ac.uk"
+
+- name: install r packages
+  command: /usr/bin/Rscript --slave --no-save --no-restore-history -e "install.packages(pkgs='{{item}}', repos=c('{{mirror}}'))"
+  with_items: 
+     - lubridate
+     - dplyr
+     - googleVis

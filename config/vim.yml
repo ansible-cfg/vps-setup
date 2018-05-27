@@ -1,0 +1,12 @@
+- name: make directory
+  file: path={{ ansible_env.HOME }}/.vim/pack/my-plugins/start state=directory recurse=yes group=users owner={{user}}
+
+- name: clone goyo  
+  git: repo=https://github.com/junegunn/goyo.vim dest={{ ansible_env.HOME }}/.vim/pack/my-plugins/start/goyo.vim
+
+- name: set color folder
+  file: path={{ ansible_env.HOME }}/.vim/colors state=directory
+
+- name: add colourscheme
+  get_url: url=https://bitbucket.org/sjl/badwolf/raw/tip/colors/badwolf.vim dest={{ ansible_env.HOME }}/.vim/colors/badwolf.vim
+
