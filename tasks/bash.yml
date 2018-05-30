@@ -1,0 +1,12 @@
+- name: create .bashrc
+  file: path=/home/{{user}}/.bashrc state=touch
+
+- name: add to .bashrc
+  blockinfile:
+    dest: /home/{{user}}/.bashrc
+    block: |
+      export EDITOR='vim'
+      PATH=$PATH:/usr/esru/esp-r/bin
+      alias ls='ls -la --color=auto'
+
+

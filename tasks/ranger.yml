@@ -1,0 +1,11 @@
+- name: copy default ranger config files
+  command: ranger --copy-config=all 
+  tags: ranger
+  become_user: {{user}}
+
+- name: show hidden files
+  lineinfile: dest=/home/{{user}}/.config/ranger/rc.conf regexp="set show_hidden false" line="set show_hidden true"
+  tags: ranger
+
+
+
