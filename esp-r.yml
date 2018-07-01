@@ -1,0 +1,11 @@
+- name: download esp-r
+  git: repo=https://github.com/ESP-rCommunity/ESP-rSource.git dest=/home/martin/ESP-rCentral
+  become: false
+
+- name: link libxml
+  shell: ln -s /usr/share/doc/libxml2 /usr/include/libxml2
+  become: true
+
+- name: install esp-r
+  shell: cd /home/martin/ESP-rCentral && sudo ./Install --gcc4 --debug --noX --silent --xml
+  become: true

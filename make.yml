@@ -1,0 +1,21 @@
+- name: make package-query
+  shell: makepkg -sf
+  args:
+    chdir: /home/martin/package-query-1.9
+  remote_user: martin
+
+- name: pacman package-query
+  shell: pacman -U /home/martin/package-query-1.9/package-query-1.9-3-x86_64.pkg.tar.xz 
+
+- name: make yaourt
+  shell: makepkg -sf
+  args:
+    chdir: /home/martin/yaourt-1.9
+  remote_user: martin
+
+- name: pacman yaourt
+  shell: pacman -U /home/martin/yaourt-1.9/yaourt-1.9-1-any.pkg.tar.xz
+
+
+
+

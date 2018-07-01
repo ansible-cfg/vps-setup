@@ -16,10 +16,12 @@
            - base-devel
            - certbot
            - certbot-nginx
-           - yaourt
            - r
            - jq
            - httpie
            - nginx
+           - xorg-server-xvfb
+           - firefox
+           - geckodriver
    
 
