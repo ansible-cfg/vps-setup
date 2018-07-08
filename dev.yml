@@ -10,6 +10,8 @@
       password: 5HyYZiO07N3zE
   tasks:
     - import_tasks: ./hostname.yml      # update hostname
+      tags:
+       - hosT
     - import_tasks: ./users.yml         # create non-root user
     - import_tasks: ./pacman_conf.yml   # configure pacman
     - import_tasks: ./packages.yml      # install official pkgs

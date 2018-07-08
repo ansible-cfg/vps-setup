@@ -35,8 +35,8 @@
       shell: curl -u u:{{LNDKEY}} https://api.linode.com/?api_action=linode.ip.list | jq '.DATA[] | select(.LINODEID=={{NEW_ID.stdout}})' | jq -r .IPADDRESS
       register: NEW_IP
 
-    - name: update /etc/hosts with new ip
-      shell: /home/albus/go/bin/hostess add {{hostname}} {{NEW_IP.stdout}}
+    - name: updaTe /etc/hosts with new ip
+      shell: hostess add {{hostname}} {{NEW_IP.stdout}}
       become: yes
 
     - name: wait for linode to come online after initial creation
