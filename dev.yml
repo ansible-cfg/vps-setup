@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  vars:
+      ansible_python_interpreter: /usr/bin/python
   tasks:
     - import_tasks: ./auth.yml          # load encryted passwords & keys
     - import_tasks: ./linode.yml        # rebuild linode & update A records for mbrien.net
