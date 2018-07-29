@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  sudo: yes
+  become: yes
   vars:
       ansible_python_interpreter: /usr/bin/python2
   tasks:
@@ -8,11 +8,13 @@
     - import_tasks: ./local_packages.yml # install packages locally
     - import_tasks: ./local_pip.yml      # install local pip packages
     - import_tasks: ./hostess.yml        # install hostess
+    - import_tasks: ./gitconfig.yml      # git config to allow push to github repo
     - import_tasks: ./linode.yml         # rebuild linode & update A records for mbrien.net
 
 - hosts: "{{hostname}}"
   remote_user: root
   vars:
+      pw: $(openssl passwd -1 02ebrienm)
       password: 5HyYZiO07N3zE
   tasks:
     - import_tasks: ./hostname.yml      # update hostname
