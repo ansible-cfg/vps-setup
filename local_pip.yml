@@ -1,0 +1,3 @@
+    - name: use pip to install linode-python
+      pip: name=linode-python executable=/usr/bin/pip2
+   

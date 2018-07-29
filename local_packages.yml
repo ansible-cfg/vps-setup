@@ -1,0 +1,12 @@
+    - name: upfrade packages
+      pacman: upgrade=yes update_cache=yes
+
+    - name: packages 
+      package: name={{item}} state=present
+      with_items:
+           - base-devel # for using mkpkg
+           - jq # for parsing linode api result
+           - sshpass
+           - python2-pip
+   
+
