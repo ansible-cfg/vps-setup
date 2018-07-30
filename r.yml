@@ -6,6 +6,5 @@
   with_items: 
      - lubridate
      - dplyr
-     - googleVis
      - plyr
      - stringr

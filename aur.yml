@@ -1,6 +1,9 @@
     - name: aur packages
       shell: yaourt -S --noconfirm {{item}}
       with_items:
+           - swapspace
            - tarsnapper
            - stagit
+           - ttf-ms-fonts
    
+

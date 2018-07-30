@@ -8,7 +8,7 @@
     - import_tasks: ./local_packages.yml # install packages locally
     - import_tasks: ./local_pip.yml      # install local pip packages
     - import_tasks: ./hostess.yml        # install hostess
-    - import_tasks: ./gitconfig.yml      # git config to allow push to github repo
+      #    - import_tasks: ./gitconfig.yml      # git config to allow push to github repo
     - import_tasks: ./linode.yml         # rebuild linode & update A records for mbrien.net
 
 - hosts: "{{hostname}}"
