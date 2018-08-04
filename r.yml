@@ -8,3 +8,6 @@
      - dplyr
      - plyr
      - stringr
+     - igraph
+     - DiagrammeR
+     - data.tree

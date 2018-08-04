@@ -12,7 +12,7 @@
   become: martin
 
 - name: make hostess
-  shell: makepkg -s
+  shell: makepkg --noconfirm -s
   become: martin
   args:
     chdir: /home/martin/hostess-git

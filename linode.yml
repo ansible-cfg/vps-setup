@@ -42,23 +42,23 @@
     - name: wait for linode to come online after initial creation
       local_action: wait_for host="{{hostname}}" port=22 delay=10 timeout=3600 state=started 
 
-    - name: update domain
-      uri:
-        url: https://api.namecheap.com/xml.response? 
-        body: "apiuser={{NC_apiuser}}&\
-               apikey={{NC_apikey}}&\
-               username={{NC_username}}&\
-               Command=namecheap.domains.dns.setHosts&\
-               ClientIp={{NC_clientIP}}&\
-               SLD=mbrien&\
-               TLD=net&\
-               HostName1=www&\
-               RecordType1=A&\
-               Address1={{NEW_IP.stdout}}"
-        return_content: yes
-      register: token_response
+      #    - name: update domain
+      #      uri:
+      #        url: https://api.namecheap.com/xml.response? 
+      #        body: "apiuser={{NC_apiuser}}&\
+      #               apikey={{NC_apikey}}&\
+      #               username={{NC_username}}&\
+      #               Command=namecheap.domains.dns.setHosts&\
+      #               ClientIp={{NC_clientIP}}&\
+      #               SLD=mbrien&\
+      #               TLD=net&\
+      #               HostName1=www&\
+      #               RecordType1=A&\
+      #               Address1={{NEW_IP.stdout}}"
+      #        return_content: yes
+      #      register: token_response
 
-    - name: debug nc
-      debug: var=token_response.content
+      #    - name: debug nc
+      #      debug: var=token_response.content
 
         
