@@ -11,3 +11,5 @@
      - igraph
      - DiagrammeR
      - data.tree
+     - solaR
+     - camsrad

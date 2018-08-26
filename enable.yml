@@ -3,9 +3,11 @@
   with_items:
      - nginx
      - cronie
+       #     - swapspace
 
 - name: start cron service
   shell: systemctl start {{ item }}
   with_items:
      - nginx
      - cronie
+       #     - swapspace

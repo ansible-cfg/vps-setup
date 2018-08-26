@@ -7,7 +7,7 @@
     - import_tasks: ./auth.yml           # load encryted passwords & keys
     - import_tasks: ./local_packages.yml # install packages locally
     - import_tasks: ./local_pip.yml      # install local pip packages
-    - import_tasks: ./hostess.yml        # install hostess
+      #    - import_tasks: ./hostess.yml        # install hostess
       #    - import_tasks: ./gitconfig.yml      # git config to allow push to github repo
     - import_tasks: ./linode.yml         # rebuild linode & update A records for mbrien.net
 
@@ -20,18 +20,18 @@
     - import_tasks: ./hostname.yml      # update hostname
     - import_tasks: ./users.yml         # create non-root user
     - import_tasks: ./pacman_conf.yml   # configure pacman
-    - import_tasks: ./packages.yml      # install official pkgs
-    - import_tasks: ./pip.yml           # install python pkgs
+    - import_tasks: ./packages.yml
     - import_tasks: ./helper.yml        # install yaourt
-    - import_tasks: ./r.yml             # install R pkgs from CRAN
+      #    - import_tasks: ./r.yml             # install R pkgs from CRAN
 
 - hosts: "{{hostname}}"
   remote_user: "{{username}}"
   tasks:
-    - import_tasks: ./aur.yml           # install pkgs from aur 
+    - import_tasks: ./powerpill.yml
+    - import_tasks: ./aur.yml
     - import_tasks: ./nginx.yml         # configure webserver
       #    - import_tasks: ./tasks/certbot.yml
-    - import_tasks: ./tarsnap.yml       # configure tarsnap
+      #    - import_tasks: ./tarsnap.yml       # configure tarsnap
     - import_tasks: ./cron.yml          # set up cron jobs
     - import_tasks: ./enable.yml        # enable & start services
       become: true

@@ -1,0 +1,32 @@
+    - name: correct sig key
+      shell: gpg --recv-key 1D1F0DC78F173680
+
+    - name: install powerpill
+      shell: yaourt -S --noconfirm powerpill
+
+    - name: powerpill packages
+      shell: powerpill -S --noconfirm {{item}}
+      with_items:
+             - ranger
+             - wget
+             - tree
+             - git
+             - cronie
+             - tarsnap
+             - certbot
+             - certbot-nginx
+             - r
+             - jq
+             - httpie
+             - nginx
+             - xorg-server-xvfb
+             - firefox
+             - geckodriver
+             - python-pip
+             - python-selenium
+             - python-termcolor
+      become: true
+      tags:
+           - powerpill
+   
+

@@ -16,7 +16,7 @@
       local_action:
        module: linode
        api_key: "{{ LNDKEY }}"
-       plan: 1
+       plan: 5
        name: "{{ hostname }}"
        datacenter: 7
        distribution: 148   # arch 148

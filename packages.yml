@@ -1,29 +1,13 @@
-    - name: upfrade packages
+    - name: upgrade packages
       pacman: upgrade=yes update_cache=yes
 
     - name: packages 
       package: name={{item}} state=present
       with_items:
-           - ranger
            - cmake
-           - wget
-           - tree
-           - git
-           - cronie
-           - tarsnap
            - pkg-config
            - yajl
            - base-devel
-           - certbot
-           - certbot-nginx
-           - r
-           - jq
-           - httpie
-           - nginx
-           - xorg-server-xvfb
-           - firefox
-           - geckodriver
-           - python-pip
            - gcc-fortran
    
 
