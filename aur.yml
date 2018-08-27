@@ -1,5 +1,5 @@
     - name: aur packages
-      shell: yaourt -S --noconfirm powerpill
+      shell: yaourt -S --noconfirm {{item}}
       with_items:
            - swapspace
            - tarsnapper
@@ -7,5 +7,6 @@
            - ttf-ms-fonts
            - princexml
            - python-pyvirtualdisplay
+           - aha
    
 

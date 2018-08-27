@@ -1,8 +1,7 @@
-- name: choose mirror
-  set_fact: mirror="http://cran.ma.imperial.ac.uk"
+- file: path='~/.R/libs' state=directory
 
 - name: install r packages
-  command: /usr/bin/Rscript --slave --no-save --no-restore-history -e "install.packages(pkgs='{{item}}', repos=c('{{mirror}}'))"
+  command: R -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
   with_items: 
      - lubridate
      - dplyr
@@ -13,3 +12,4 @@
      - data.tree
      - solaR
      - camsrad
+     - devtools

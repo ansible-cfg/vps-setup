@@ -1,5 +1,11 @@
     - name: correct sig key
-      shell: gpg --recv-key 1D1F0DC78F173680
+      shell: pacman-key --export 1D1F0DC78F173680 > xyne.asc 
+
+    - name: gpg
+      shell: gpg --import xyne.asc
+
+    - name: remove xyne.asc
+      file: path='~/xyne.asc' state=absent
 
     - name: install powerpill
       shell: yaourt -S --noconfirm powerpill
@@ -25,8 +31,7 @@
              - python-pip
              - python-selenium
              - python-termcolor
+             - wkhtmltopdf
       become: true
-      tags:
-           - powerpill
    
 

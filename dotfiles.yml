@@ -1,0 +1,4 @@
+- name: make symlink
+  file: src='~/tarsnap/dotfiles/.Rprofile' dest='~/.Rprofile' state=link
+
+
