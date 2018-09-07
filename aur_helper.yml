@@ -35,7 +35,7 @@
     validate_certs: no
 
 - name: make package-query
-  shell: makepkg -s
+  shell: makepkg -f -s
   args:
     chdir: /home/martin/package-query-1.9
   remote_user: martin

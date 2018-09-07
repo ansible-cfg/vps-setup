@@ -7,6 +7,9 @@
            - ttf-ms-fonts
            - princexml
            - python-pyvirtualdisplay
+           - newsboat
            - aha
+           - nginx
+           - cronie
    
 

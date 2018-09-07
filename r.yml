@@ -1,15 +1,6 @@
 - file: path='~/.R/libs' state=directory
 
 - name: install r packages
-  command: R -e "install.packages('{{item}}', repos='http://cran.rstudio.com/')"
+  command: R -e "install.packages('{{item}}', repos='https://cloud.r-project.org/')"
   with_items: 
-     - lubridate
-     - dplyr
-     - plyr
-     - stringr
-     - igraph
-     - DiagrammeR
-     - data.tree
-     - solaR
-     - camsrad
-     - devtools
+     - pacman

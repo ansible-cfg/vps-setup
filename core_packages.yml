@@ -9,5 +9,6 @@
            - yajl
            - base-devel
            - gcc-fortran
+           - r
    
 

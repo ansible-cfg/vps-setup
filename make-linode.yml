@@ -1,0 +1,30 @@
+    - name: make new linode
+      local_action:
+       module: linode
+       api_key: "{{ LNDKEY }}"
+       plan: 1
+       name: "{{ hostname }}"
+       datacenter: 7
+       distribution: 148   # arch 148
+       password: "{{ LNDPW }}"
+       ssh_pub_key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
+       swap: 768
+       wait: yes
+       wait_timeout: 600
+       state: present
+
+    - name: grab new LinodeID  
+      shell: curl -u u:{{LNDKEY}} https://api.linode.com/?api_action=linode.list | jq '.DATA[] | select(.LABEL | contains("{{hostname}}"))' | jq -r .LINODEID
+      register: NEW_ID
+
+    - name: grab new IP
+      shell: curl -u u:{{LNDKEY}} https://api.linode.com/?api_action=linode.ip.list | jq '.DATA[] | select(.LINODEID=={{NEW_ID.stdout}})' | jq -r .IPADDRESS
+      register: NEW_IP
+
+    - name: update /etc/hosts with new ip
+      shell: hostess add {{hostname}} {{NEW_IP.stdout}}
+      become: yes
+
+    - name: wait for linode to come online after initial creation
+      local_action: wait_for host="{{hostname}}" port=22 delay=10 timeout=3600 state=started 
+        

@@ -1,0 +1,14 @@
+    - name: grab existing LinodeID
+      shell: curl -u u:{{LNDKEY}} https://api.linode.com/?api_action=linode.list | jq '.DATA[] | select(.LABEL | contains("{{hostname}}"))' | jq -r .LINODEID
+      register: OLD_ID
+
+    - debug: msg="{{OLD_ID.stdout}}"
+
+    - name: delete existing linode  
+      local_action:
+       module: linode
+       api_key: "{{ LNDKEY }}"
+       linode_id: "{{ OLD_ID.stdout }}"
+       state: absent
+      when: OLD_ID.stdout != ""  
+

@@ -2,4 +2,5 @@
       shell: pip install {{item}}
       with_items:
            - pyvirtualdisplay
+           - termgraph
       become: true 

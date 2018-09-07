@@ -1,2 +1,2 @@
-time ansible-playbook -i mbrien1, --vault-password-file=~/vault-password dev.yml -k --extra-vars "hostname=mbrien1 username=martin archive=tarsnap"
+time ansible-playbook -i mbrien, --vault-password-file=~/vault-password dev.yml -k --extra-vars "hostname=mbrien username=martin archive=tarsnap" 
 
