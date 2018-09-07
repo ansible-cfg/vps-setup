@@ -18,6 +18,7 @@
   file: src='~/tarsnap/dotfiles/.vimrc' dest='~/.vimrc' state=link
 
 ### bash ###
-
+- name: bash config
+  file: src='~/tarsnap/dotfiles/.bashrc' dest='~/.bashrc' state=link
  
 ### newsboat ###

@@ -8,7 +8,6 @@
     - import_tasks: ./localhost_pkgs.yml # install packages locally
     - pip: name=linode-python executable=/usr/bin/pip2
       #    - import_tasks: ./hostess.yml        # install hostess
-      #    - import_tasks: ./gitconfig.yml      # git config to allow push to github repo
     - import_tasks: ./kill_node.yml         # rebuild linode & update A records for mbrien.net
     - import_tasks: ./make_node.yml
 
@@ -21,21 +20,20 @@
     - import_tasks: ./hostname.yml      # update hostname
     - import_tasks: ./users.yml         # create non-root user
       #    - import_tasks: ./pacman_conf.yml   # configure pacman
-    - import_tasks: ./core_pkgs.yml
-    - import_tasks: ./cran_pkgs.yml
-    - import_tasks: ./pip3_pkgs.yml
-
-    - import_tasks: ./aur_helper.yml        # install yaourt
+    - import_tasks: ./pkgs/core_pkgs.yml
+    - import_tasks: ./pkgs/cran_pkgs.yml
+    - import_tasks: ./pkgs/pip3_pkgs.yml
+    - import_tasks: ./pkgs/aur_helper.yml        # install yaourt
 
 - hosts: "{{hostname}}"
   remote_user: "{{username}}"
   tasks:
-    - import_tasks: ./aur_pkgs.yml
+    - import_tasks: ./pkgs/aur_pkgs.yml
     - import_tasks: ./nginx.yml
     - import_tasks: ./cron.yml
     - import_tasks: ./enable.yml
       become: true
-    - import_tasks: ./powerpill.yml
+    - import_tasks: ./pkgs/powerpill.yml
     - import_tasks: ./tarsnap.yml
     - import_tasks: ./dotfiles.yml
       #    - import_tasks: ./certbot.yml
