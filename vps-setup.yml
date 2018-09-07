@@ -4,11 +4,11 @@
   vars:
       ansible_python_interpreter: /usr/bin/python2
   tasks:
-    - import_tasks: ./auth.yml           # load encryted passwords & keys
-    - import_tasks: ./localhost_pkgs.yml # install packages locally
+    - import_tasks: ./auth.yml         
+    - import_tasks: ./pkgs/localhost_pkgs.yml 
     - pip: name=linode-python executable=/usr/bin/pip2
       #    - import_tasks: ./hostess.yml        # install hostess
-    - import_tasks: ./kill_node.yml         # rebuild linode & update A records for mbrien.net
+    - import_tasks: ./kill_node.yml    
     - import_tasks: ./make_node.yml
 
 - hosts: "{{hostname}}"
@@ -17,13 +17,13 @@
       password: 5HyYZiO07N3zE
       # password: $(openssl passwd -1 02ebrienm)
   tasks:
-    - import_tasks: ./hostname.yml      # update hostname
-    - import_tasks: ./users.yml         # create non-root user
+    - import_tasks: ./hostname.yml   
+    - import_tasks: ./users.yml    
       #    - import_tasks: ./pacman_conf.yml   # configure pacman
     - import_tasks: ./pkgs/core_pkgs.yml
     - import_tasks: ./pkgs/cran_pkgs.yml
     - import_tasks: ./pkgs/pip3_pkgs.yml
-    - import_tasks: ./pkgs/aur_helper.yml        # install yaourt
+    - import_tasks: ./pkgs/aur_helper.yml    
 
 - hosts: "{{hostname}}"
   remote_user: "{{username}}"

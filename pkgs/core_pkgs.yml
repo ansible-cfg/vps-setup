@@ -10,5 +10,6 @@
            - base-devel
            - gcc-fortran
            - r
+           - python-pip
    
 
