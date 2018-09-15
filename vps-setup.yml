@@ -1,13 +1,12 @@
 ---
 - hosts: localhost
-  become: yes
+  become: true
   vars:
       ansible_python_interpreter: /usr/bin/python2
   tasks:
     - import_tasks: ./auth.yml         
     - import_tasks: ./pkgs/localhost_pkgs.yml 
     - pip: name=linode-python executable=/usr/bin/pip2
-      #    - import_tasks: ./hostess.yml        # install hostess
     - import_tasks: ./kill_node.yml    
     - import_tasks: ./make_node.yml
 
@@ -19,21 +18,18 @@
   tasks:
     - import_tasks: ./hostname.yml   
     - import_tasks: ./users.yml    
-      #    - import_tasks: ./pacman_conf.yml   # configure pacman
     - import_tasks: ./pkgs/core_pkgs.yml
     - import_tasks: ./pkgs/cran_pkgs.yml
     - import_tasks: ./pkgs/pip3_pkgs.yml
-    - import_tasks: ./pkgs/aur_helper.yml    
 
 - hosts: "{{hostname}}"
   remote_user: "{{username}}"
   tasks:
+    - import_tasks: ./pkgs/trizen.yml
     - import_tasks: ./pkgs/aur_pkgs.yml
-    - import_tasks: ./nginx.yml
     - import_tasks: ./cron.yml
     - import_tasks: ./enable.yml
       become: true
-    - import_tasks: ./pkgs/powerpill.yml
     - import_tasks: ./tarsnap.yml
     - import_tasks: ./dotfiles.yml
       #    - import_tasks: ./certbot.yml

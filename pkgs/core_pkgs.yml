@@ -1,15 +1,16 @@
-    - name: upgrade packages
-      pacman: upgrade=yes update_cache=yes
+- name: upgrade packages
+  pacman: upgrade=yes update_cache=yes
 
-    - name: packages 
-      package: name={{item}} state=present
-      with_items:
-           - cmake
-           - pkg-config
-           - yajl
-           - base-devel
-           - gcc-fortran
-           - r
-           - python-pip
+- name: core packages
+  package: name={{item}} state=present
+  with_items:
+       - cmake
+       - r
+       - pkg-config
+       - yajl
+       - base-devel
+       - gcc-fortran
+       - python-pip
+       - git
    
 

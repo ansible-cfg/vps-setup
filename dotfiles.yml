@@ -18,7 +18,23 @@
   file: src='~/tarsnap/dotfiles/.vimrc' dest='~/.vimrc' state=link
 
 ### bash ###
-- name: bash config
-  file: src='~/tarsnap/dotfiles/.bashrc' dest='~/.bashrc' state=link
+#- name: bash config
+#  file: src='~/tarsnap/dotfiles/.bashrc' dest='~/.bashrc' state=link
  
 ### newsboat ###
+### bash ###
+
+- name: change
+  file:
+    path: /etc/nginx/
+    owner: root
+    mode: 0777
+  become: true
+  tags:
+    - do
+
+- name: nginx config
+  file: src='~/tarsnap/dotfiles/nginx.conf' dest='/etc/nginx/nginx.conf' state=link force=yes
+  become: true
+  tags:
+    - do

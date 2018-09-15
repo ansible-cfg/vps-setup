@@ -1,7 +1,8 @@
     - name: aur packages
-      shell: yaourt -S --noconfirm {{item}}
+      shell: trizen -S --noconfirm {{item}}
       with_items:
            - swapspace
+           - tarsnap
            - tarsnapper
            - stagit
            - ttf-ms-fonts

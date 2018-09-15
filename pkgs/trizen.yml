@@ -1,0 +1,20 @@
+#- name: Download vam
+#  git:
+#    repo: 'git clone https://aur.archlinux.org/vam.git'
+#    dest: /home/{{username}}/vam
+
+- name: git clone trizen
+  shell: git clone https://aur.archlinux.org/trizen.git 
+  args:
+    chdir: /home/{{username}}
+ 
+- name: make trizen
+  shell: makepkg --noconfirm -si
+  args:
+    chdir: /home/{{username}}/trizen
+
+- name: delete trizen
+  file:
+    state: absent
+    path: /home/{{username}}/trizen
+

@@ -1,4 +1,7 @@
 - name: Creates weekly backup cronjob
-  cron: special_time="hourly" name="tarsnapper" job="tarsnapper -c tarsnapper.conf make"
+  cron: 
+    special_time="hourly" 
+    name="tarsnapper" 
+    job="tarsnapper -c tarsnapper.conf make"
 
 
