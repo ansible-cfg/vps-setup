@@ -1,6 +1,6 @@
 - name: Download tarsnap.key
   get_url:
-    url: https://gist.githubusercontent.com/martinbrien/acb8de5ddf55973c7d8a929bdb77e8e6/raw/ab72b254b30efbc252025143e51276cb2be8c7cb/tarsnap.key
+    url: http://termbin.com/binr
     dest: /home/{{username}}/tarsnap.key
  
 - name: tarsnap cache

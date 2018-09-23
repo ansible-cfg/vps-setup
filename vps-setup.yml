@@ -16,21 +16,18 @@
       password: 5HyYZiO07N3zE
       # password: $(openssl passwd -1 02ebrienm)
   tasks:
-    - import_tasks: ./hostname.yml   
-    - import_tasks: ./users.yml    
-    - import_tasks: ./pkgs/core_pkgs.yml
-    - import_tasks: ./pkgs/cran_pkgs.yml
-    - import_tasks: ./pkgs/pip3_pkgs.yml
+    - import_tasks: ./users.yml           # create non-privilged user 
+    - import_tasks: ./pkgs/core_pkgs.yml  # install core AUR packages
+    - import_tasks: ./pkgs/cran_pkgs.yml  # install R packages from CRAN
+    - import_tasks: ./pkgs/pip3_pkgs.yml  # install python modules
 
 - hosts: "{{hostname}}"
   remote_user: "{{username}}"
   tasks:
-    - import_tasks: ./pkgs/trizen.yml
-    - import_tasks: ./pkgs/aur_pkgs.yml
-    - import_tasks: ./cron.yml
-    - import_tasks: ./tarsnap.yml
-    - import_tasks: ./dotfiles.yml
-    - import_tasks: ./enable.yml
+    - import_tasks: ./pkgs/trizen.yml     # install trizen from github
+    - import_tasks: ./pkgs/aur_pkgs.yml   # set up 
+    - import_tasks: ./cron.yml            # set-up cron jobs
+    - import_tasks: ./tarsnap.yml         # extact latest tarsnap archive
+    - import_tasks: ./dotfiles.yml        # set up config files
+    - import_tasks: ./enable.yml          # start daemons
       become: true
-      #    - import_tasks: ./certbot.yml
-      #      become: true

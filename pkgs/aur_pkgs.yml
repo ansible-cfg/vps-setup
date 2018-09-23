@@ -19,6 +19,9 @@
              - wkhtmltopdf
              - swapspace
              - tarsnapper
+             - perl-crypt-rijndael
+             - perl-file-keepass
+             - kpcli
              #           - stagit
              #           - ttf-ms-fonts
              #           - princexml
