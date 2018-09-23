@@ -28,9 +28,9 @@
     - import_tasks: ./pkgs/trizen.yml
     - import_tasks: ./pkgs/aur_pkgs.yml
     - import_tasks: ./cron.yml
-    - import_tasks: ./enable.yml
-      become: true
     - import_tasks: ./tarsnap.yml
     - import_tasks: ./dotfiles.yml
+    - import_tasks: ./enable.yml
+      become: true
       #    - import_tasks: ./certbot.yml
       #      become: true

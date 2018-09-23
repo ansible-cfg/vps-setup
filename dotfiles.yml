@@ -27,14 +27,14 @@
 - name: change
   file:
     path: /etc/nginx/
-    owner: root
+    #    owner: root
     mode: 0777
   become: true
   tags:
     - do
 
 - name: nginx config
-  file: src='~/tarsnap/dotfiles/nginx.conf' dest='/etc/nginx/nginx.conf' state=link force=yes
+  file: src='/home/martin/tarsnap/dotfiles/nginx.conf' dest='/etc/nginx/nginx.conf' force=yes owner=martin group=users follow=False state=link 
   become: true
   tags:
     - do

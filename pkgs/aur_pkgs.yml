@@ -1,15 +1,32 @@
     - name: aur packages
       shell: trizen -S --noconfirm {{item}}
       with_items:
-           - swapspace
-           - tarsnap
-           - tarsnapper
-           - stagit
-           - ttf-ms-fonts
-           - princexml
-           - newsboat
-           - aha
-           - nginx
-           - cronie
+             - ranger
+             - wget
+             - tree
+             - git
+             - tarsnap
+             - certbot
+             - certbot-nginx
+             - jq
+             - httpie
+             - xorg-server-xvfb
+             - firefox
+             - geckodriver
+             - python-pip
+             - python-selenium
+             - python-termcolor
+             - wkhtmltopdf
+             - swapspace
+             - tarsnapper
+             #           - stagit
+             #           - ttf-ms-fonts
+             #           - princexml
+             #          - newsboat
+             #           - aha
+             - nginx
+             - cronie
+
+
    
 
